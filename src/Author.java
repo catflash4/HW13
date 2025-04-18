@@ -1,6 +1,8 @@
+import java.util.Objects;
+
 public class Author {
-    private String name;
-    private String lastName;
+    private final String name;
+    private final String lastName;
 
     public Author(String name, String lastName) {
         this.name = name;
@@ -15,19 +17,18 @@ public class Author {
         return lastName;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
     @Override
     public String toString() {
         return name + " " + lastName;
     }
     @Override
     public int hashCode(){
-        return java.util.Objects.hashCode(toString());
+        return java.util.Objects.hashCode(this.name) & java.util.Objects.hashCode(this.lastName);
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Author author = (Author) o;
+        return Objects.equals(name, author.name) && Objects.equals(lastName, author.lastName);
     }
 }
