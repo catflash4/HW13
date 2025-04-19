@@ -23,11 +23,13 @@ public class Author {
     }
     @Override
     public int hashCode(){
-        return java.util.Objects.hashCode(this.name) & java.util.Objects.hashCode(this.lastName);
+        return java.util.Objects.hash(name, lastName);
     }
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Author author = (Author) o;
         return Objects.equals(name, author.name) && Objects.equals(lastName, author.lastName);
     }
